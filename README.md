@@ -1,6 +1,6 @@
-# hiit
+# HIIT
 
-A new Flutter project.
+How is it weather ?
 
 ## Getting Started
 
