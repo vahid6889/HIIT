@@ -32,6 +32,22 @@ class ApiProvider {
     return response;
   }
 
+  /// hourly forecast for 48 hours
+  Future<dynamic> sendRequest48HoursForcast(ForecastParams params) async {
+    print(params.lat);
+    print(params.lon);
+    var response = await _dio
+        .get("${Constants.baseUrl}/data/2.5/onecall", queryParameters: {
+      'lat': params.lat,
+      'lon': params.lon,
+      'exclude': 'current,minutely,daily',
+      'appid': apiKey,
+      'units': 'metric'
+    });
+
+    return response;
+  }
+
   /// city name suggest api
   Future<dynamic> sendRequestCitySuggestion(String prefix) async {
     var response = await _dio.get(

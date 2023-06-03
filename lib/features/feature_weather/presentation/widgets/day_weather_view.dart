@@ -1,6 +1,6 @@
 import 'package:hiit/core/presentation/widgets/app_background.dart';
 import 'package:hiit/core/utils/date_converter.dart';
-import 'package:hiit/features/feature_weather/data/models/forcast_days_model.dart';
+import 'package:hiit/features/feature_weather/data/models/forecast_days_model.dart';
 import 'package:flutter/material.dart';
 
 class DaysWeatherView extends StatefulWidget {

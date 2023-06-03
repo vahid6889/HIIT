@@ -3,16 +3,20 @@ import 'package:hiit/core/presentation/widgets/app_background.dart';
 import 'package:hiit/core/presentation/widgets/dot_loading_widget.dart';
 import 'package:hiit/core/utils/date_converter.dart';
 import 'package:hiit/features/feature_bookmark/presentation/bloc/bookmark_bloc.dart';
-import 'package:hiit/features/feature_weather/data/models/forcast_days_model.dart';
+import 'package:hiit/features/feature_weather/data/models/forecast_days_model.dart';
+import 'package:hiit/features/feature_weather/data/models/forecast_hourly_model.dart';
 import 'package:hiit/features/feature_weather/data/models/suggest_city_model.dart';
 import 'package:hiit/features/feature_weather/domain/entities/current_city_entity.dart';
-import 'package:hiit/features/feature_weather/domain/entities/forecase_days_entity.dart';
+import 'package:hiit/features/feature_weather/domain/entities/forecast_days_entity.dart';
+import 'package:hiit/features/feature_weather/domain/entities/forecast_hourly_entity.dart';
 import 'package:hiit/features/feature_weather/domain/use_cases/get_suggestion_city_usecase.dart';
 import 'package:hiit/features/feature_weather/presentation/bloc/cw_status.dart';
+import 'package:hiit/features/feature_weather/presentation/bloc/fh_status.dart';
 import 'package:hiit/features/feature_weather/presentation/bloc/fw_status.dart';
 import 'package:hiit/features/feature_weather/presentation/bloc/home_bloc.dart';
 import 'package:hiit/features/feature_weather/presentation/widgets/bookmark_icon.dart';
 import 'package:hiit/features/feature_weather/presentation/widgets/day_weather_view.dart';
+import 'package:hiit/features/feature_weather/presentation/widgets/hourly_weather_view.dart';
 import 'package:hiit/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -183,6 +187,11 @@ class _HomeScreenState extends State<HomeScreen>
                   LoadFwEvent(forecastParams),
                 );
 
+                /// start load Fh event
+                BlocProvider.of<HomeBloc>(context).add(
+                  LoadFhEvent(forecastParams),
+                );
+
                 /// change Times to Hour --5:55 AM/PM----
                 final sunrise = DateConverter.changeDtToDateTimeHour(
                   currentCityEntity.sys!.sunrise,
@@ -201,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen>
                         padding: EdgeInsets.only(top: height * 0.02),
                         child: SizedBox(
                           width: width,
-                          height: 400,
+                          height: 370,
                           child: PageView.builder(
                             physics: const AlwaysScrollableScrollPhysics(),
                             allowImplicitScrolling: true,
@@ -211,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen>
                               if (position == 0) {
                                 return Column(
                                   children: [
-                                    const SizedBox(height: 50),
+                                    const SizedBox(height: 10),
                                     Text(
                                       currentCityEntity.name!,
                                       style: const TextStyle(
@@ -305,16 +314,90 @@ class _HomeScreenState extends State<HomeScreen>
                                   ],
                                 );
                               } else {
-                                return Container(
-                                  color: Colors.amber,
+                                /// forecast weather 48 hourly
+                                return Padding(
+                                  padding: const EdgeInsets.only(top: 15),
+                                  child: SizedBox(
+                                    width: double.infinity,
+                                    height: 100,
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 10.0),
+                                      // child: Center(
+                                      child: BlocBuilder<HomeBloc, HomeState>(
+                                        builder: (BuildContext context, state) {
+                                          /// show Loading State for Fw
+                                          if (state.fhStatus is FhLoading) {
+                                            return const DotLoadingWidget();
+                                          }
+
+                                          /// show Completed State for Fw
+                                          if (state.fhStatus is FhCompleted) {
+                                            /// casting
+                                            final FhCompleted fhCompleted =
+                                                state.fhStatus as FhCompleted;
+                                            final ForecastHourlyEntity
+                                                forecastHourlyEntity =
+                                                fhCompleted
+                                                    .forecastHourlyEntity;
+                                            final List<Hourly> mainHourly =
+                                                forecastHourlyEntity.hourly!;
+                                            final int mainTimeZone =
+                                                forecastHourlyEntity
+                                                    .timezoneOffset!;
+                                            return GridView.count(
+                                              crossAxisCount: 3,
+                                              shrinkWrap: true,
+                                              physics:
+                                                  const BouncingScrollPhysics(),
+                                              mainAxisSpacing: 20,
+                                              children: List.generate(
+                                                mainHourly.length,
+                                                (index) {
+                                                  return HourlyWeatherView(
+                                                    hourly: mainHourly[index],
+                                                    timeZone: mainTimeZone,
+                                                  );
+                                                },
+                                              ),
+                                            );
+                                            // return ListView.builder(
+                                            //   shrinkWrap: true,
+                                            //   scrollDirection: Axis.vertical,
+                                            //   itemCount: mainHourly.length,
+                                            //   itemBuilder: (
+                                            //     BuildContext context,
+                                            //     int index,
+                                            //   ) {
+                                            //     return HourlyWeatherView(
+                                            //       hourly: mainHourly[index],
+                                            //       timeZone: mainTimeZone,
+                                            //     );
+                                            //   },
+                                            // );
+                                          }
+
+                                          /// show Error State for Fw
+                                          if (state.fhStatus is FhError) {
+                                            final FhError fhError =
+                                                state.fhStatus as FhError;
+                                            return Center(
+                                              child: Text(fhError.message),
+                                            );
+                                          }
+
+                                          /// show Default State for Fw
+                                          return Container();
+                                        },
+                                      ),
+                                      // ),
+                                    ),
+                                  ),
                                 );
                               }
                             },
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
                       ),
                       Center(
                         child: SmoothPageIndicator(
@@ -415,17 +498,7 @@ class _HomeScreenState extends State<HomeScreen>
                         ),
                       ),
 
-                      /// divider
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15),
-                        child: Container(
-                          color: Colors.white24,
-                          height: 2,
-                          width: double.infinity,
-                        ),
-                      ),
-
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 15),
 
                       /// last Row
                       Row(

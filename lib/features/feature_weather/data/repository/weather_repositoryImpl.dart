@@ -2,10 +2,12 @@ import 'package:hiit/core/params/forecast_params.dart';
 import 'package:hiit/core/resources/data_state.dart';
 import 'package:hiit/features/feature_weather/data/data_source/remote/api_provider.dart';
 import 'package:hiit/features/feature_weather/data/models/current_city_model.dart';
-import 'package:hiit/features/feature_weather/data/models/forcast_days_model.dart';
+import 'package:hiit/features/feature_weather/data/models/forecast_days_model.dart';
+import 'package:hiit/features/feature_weather/data/models/forecast_hourly_model.dart';
 import 'package:hiit/features/feature_weather/data/models/suggest_city_model.dart';
 import 'package:hiit/features/feature_weather/domain/entities/current_city_entity.dart';
-import 'package:hiit/features/feature_weather/domain/entities/forecase_days_entity.dart';
+import 'package:hiit/features/feature_weather/domain/entities/forecast_days_entity.dart';
+import 'package:hiit/features/feature_weather/domain/entities/forecast_hourly_entity.dart';
 import 'package:hiit/features/feature_weather/domain/entities/suggest_city_entity.dart';
 import 'package:hiit/features/feature_weather/domain/repository/weather_repository.dart';
 import 'package:dio/dio.dart';
@@ -48,6 +50,26 @@ class WeatherRepositoryImpl extends WeatherRepository {
       }
     } catch (e) {
       // print(e.toString());
+      return const DataFailed("please check your connection...");
+    }
+  }
+
+  @override
+  Future<DataState<ForecastHourlyEntity>> fetchForecastHourlyData(
+      ForecastParams params) async {
+    try {
+      Response response = await _apiProvider.sendRequest48HoursForcast(params);
+
+      if (response.statusCode == 200) {
+        ForecastHourlyEntity forecastHourlyEntity =
+            ForecastHourlyModel.fromJson(response.data);
+
+        return DataSuccess(forecastHourlyEntity);
+      } else {
+        return const DataFailed("Something Went Wrong. try again...");
+      }
+    } catch (e) {
+      print(e);
       return const DataFailed("please check your connection...");
     }
   }

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../../data/models/forcast_days_model.dart';
+import 'package:hiit/features/feature_weather/data/models/forecast_days_model.dart';
 
 class ForecastDaysEntity extends Equatable {
   final double? lat;

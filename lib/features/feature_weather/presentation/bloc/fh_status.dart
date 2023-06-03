@@ -1,30 +1,31 @@
 import 'package:hiit/features/feature_weather/domain/entities/forecast_days_entity.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:hiit/features/feature_weather/domain/entities/forecast_hourly_entity.dart';
 
 @immutable
-abstract class FwStatus extends Equatable {}
+abstract class FhStatus extends Equatable {}
 
-class FwLoading extends FwStatus {
+class FhLoading extends FhStatus {
   @override
   // TODO: implement props
   List<Object?> get props => [];
 }
 
-class FwCompleted extends FwStatus {
-  final ForecastDaysEntity forecastDaysEntity;
+class FhCompleted extends FhStatus {
+  final ForecastHourlyEntity forecastHourlyEntity;
 
-  FwCompleted(this.forecastDaysEntity);
+  FhCompleted(this.forecastHourlyEntity);
 
   @override
   // TODO: implement props
-  List<Object?> get props => [forecastDaysEntity];
+  List<Object?> get props => [FhCompleted];
 }
 
-class FwError extends FwStatus {
+class FhError extends FhStatus {
   final String message;
 
-  FwError(this.message);
+  FhError(this.message);
 
   @override
   // TODO: implement props

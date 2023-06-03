@@ -1,4 +1,4 @@
-import 'package:hiit/features/feature_weather/domain/entities/forecase_days_entity.dart';
+import 'package:hiit/features/feature_weather/domain/entities/forecast_days_entity.dart';
 
 /// lat : 51.4215
 /// lon : 35.6944
@@ -37,14 +37,15 @@ class ForecastDaysModel extends ForecastDaysEntity {
     }
 
     return ForecastDaysModel(
-        lat: json['lat'].toDouble(),
-        lon: json['lon'].toDouble(),
-        timezone: json['timezone'],
-        timezoneOffset: json['timezone_offset'],
-        current:
-            json['current'] != null ? Current.fromJson(json['current']) : null,
-        daily: daily,
-        alerts: alerts);
+      lat: json['lat'].toDouble(),
+      lon: json['lon'].toDouble(),
+      timezone: json['timezone'],
+      timezoneOffset: json['timezone_offset'],
+      current:
+          json['current'] != null ? Current.fromJson(json['current']) : null,
+      daily: daily,
+      alerts: alerts,
+    );
   }
 }
 
