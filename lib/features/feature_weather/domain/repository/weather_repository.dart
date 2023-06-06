@@ -7,6 +7,8 @@ import 'package:hiit/features/feature_weather/domain/entities/forecast_hourly_en
 
 abstract class WeatherRepository {
   Future<DataState<CurrentCityEntity>> fetchCurrentWetherData(String cityName);
+  Future<DataState<CurrentCityEntity>> fetchCurrentWeatherLocation(
+      ForecastParams params);
   Future<DataState<ForecastDaysEntity>> fetchForecastWeatherData(
       ForecastParams params);
   Future<DataState<ForecastHourlyEntity>> fetchForecastHourlyData(

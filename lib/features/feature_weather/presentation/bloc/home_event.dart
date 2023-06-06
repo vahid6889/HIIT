@@ -9,6 +9,12 @@ class LoadCwEvent extends HomeEvent {
   LoadCwEvent(this.cityName);
 }
 
+class LoadLwEvent extends HomeEvent {
+  final ForecastParams forecastParams;
+
+  LoadLwEvent(this.forecastParams);
+}
+
 class LoadFwEvent extends HomeEvent {
   final ForecastParams forecastParams;
 

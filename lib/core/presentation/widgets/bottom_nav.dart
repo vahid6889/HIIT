@@ -22,17 +22,21 @@ class BottomNav extends StatelessWidget {
           children: [
             IconButton(
                 onPressed: () {
-                  Controller.animateToPage(HomeScreen.page,
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut);
+                  Controller.animateToPage(
+                    HomeScreen.page,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
                 },
                 icon: const Icon(Icons.home)),
             const SizedBox(),
             IconButton(
                 onPressed: () {
-                  Controller.animateToPage(BookmarkScreen.page,
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut);
+                  Controller.animateToPage(
+                    BookmarkScreen.page,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
                 },
                 icon: const Icon(Icons.bookmark)),
           ],

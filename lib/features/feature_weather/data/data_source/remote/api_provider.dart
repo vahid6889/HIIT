@@ -18,6 +18,18 @@ class ApiProvider {
     return response;
   }
 
+  /// current weather api with lat & lon location
+  Future<dynamic> callCurrentWeatherLocation(ForecastParams params) async {
+    var response = await _dio
+        .get("${Constants.baseUrl}/data/2.5/weather", queryParameters: {
+      'lat': params.lat,
+      'lon': params.lon,
+      'appid': apiKey,
+      'units': 'metric',
+    });
+    return response;
+  }
+
   /// 7 days forecast api
   Future<dynamic> sendRequest7DaysForcast(ForecastParams params) async {
     var response = await _dio
@@ -34,8 +46,6 @@ class ApiProvider {
 
   /// hourly forecast for 48 hours
   Future<dynamic> sendRequest48HoursForcast(ForecastParams params) async {
-    print(params.lat);
-    print(params.lon);
     var response = await _dio
         .get("${Constants.baseUrl}/data/2.5/onecall", queryParameters: {
       'lat': params.lat,

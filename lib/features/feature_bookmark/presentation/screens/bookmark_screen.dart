@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:hiit/core/utils/prefs_operator.dart';
 import 'package:hiit/features/feature_bookmark/domain/entities/city_entity.dart';
 import 'package:hiit/features/feature_bookmark/presentation/bloc/bookmark_bloc.dart';
 import 'package:hiit/features/feature_bookmark/presentation/bloc/get_all_city_status.dart';
@@ -6,6 +7,7 @@ import 'package:hiit/features/feature_weather/presentation/bloc/home_bloc.dart';
 import 'package:hiit/features/feature_weather/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hiit/locator.dart';
 
 class BookmarkScreen extends StatelessWidget {
   final PageController pageController;
@@ -71,6 +73,10 @@ class BookmarkScreen extends StatelessWidget {
                             City city = cities[index];
                             return GestureDetector(
                               onTap: () {
+                                /// save city name selected
+                                PrefsOperator prefsOperator = locator();
+                                prefsOperator.saveCitySelected(city.name);
+
                                 /// call for getting bookmarked city Data
                                 BlocProvider.of<HomeBloc>(context)
                                     .add(LoadCwEvent(city.name));

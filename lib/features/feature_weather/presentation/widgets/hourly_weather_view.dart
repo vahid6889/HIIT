@@ -37,7 +37,7 @@ class _HourlyWeatherViewState extends State<HourlyWeatherView> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 5.0),
+                padding: const EdgeInsets.only(top: 1.0),
                 child: AppBackground.setIconForMain(
                   widget.hourly.weather![0].description,
                 ),

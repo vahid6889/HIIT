@@ -10,7 +10,7 @@ class GetCurrentWeatherUseCase
   GetCurrentWeatherUseCase(this.weatherRepository);
 
   @override
-  Future<DataState<CurrentCityEntity>> call(String param) {
-    return weatherRepository.fetchCurrentWetherData(param);
+  Future<DataState<CurrentCityEntity>> call(String cityName) {
+    return weatherRepository.fetchCurrentWetherData(cityName);
   }
 }

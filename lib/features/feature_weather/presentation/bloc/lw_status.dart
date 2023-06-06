@@ -1,33 +1,33 @@
-import 'package:equatable/equatable.dart';
 import 'package:hiit/features/feature_weather/domain/entities/current_city_entity.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-abstract class CwStatus extends Equatable {}
+abstract class LwStatus extends Equatable {}
 
-class CwInitial extends CwStatus {
+class LwInitial extends LwStatus {
   @override
   List<Object?> get props => [];
 }
 
-class CwLoading extends CwStatus {
+class LwLoading extends LwStatus {
   @override
   List<Object?> get props => [];
 }
 
-class CwCompleted extends CwStatus {
+class LwCompleted extends LwStatus {
   final CurrentCityEntity currentCityEntity;
 
-  CwCompleted(this.currentCityEntity);
+  LwCompleted(this.currentCityEntity);
 
   @override
   List<Object?> get props => [currentCityEntity];
 }
 
-class CwError extends CwStatus {
+class LwError extends LwStatus {
   final String message;
 
-  CwError(this.message);
+  LwError(this.message);
 
   @override
   List<Object?> get props => [message];

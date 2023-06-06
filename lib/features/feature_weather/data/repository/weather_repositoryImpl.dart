@@ -82,4 +82,23 @@ class WeatherRepositoryImpl extends WeatherRepository {
 
     return suggestCityEntity.data!;
   }
+
+  @override
+  Future<DataState<CurrentCityEntity>> fetchCurrentWeatherLocation(
+      ForecastParams params) async {
+    try {
+      Response response = await _apiProvider.callCurrentWeatherLocation(params);
+
+      if (response.statusCode == 200) {
+        CurrentCityEntity currentCityEntity =
+            CurrentCityModel.fromJson(response.data);
+        return DataSuccess(currentCityEntity);
+      } else {
+        return const DataFailed("Something Went Wrong. try again...");
+      }
+    } catch (e) {
+      // print(e.toString());
+      return const DataFailed("please check your connection...");
+    }
+  }
 }
