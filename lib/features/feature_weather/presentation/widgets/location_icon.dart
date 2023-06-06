@@ -1,10 +1,6 @@
 import 'package:hiit/core/params/forecast_params.dart';
 import 'package:hiit/core/presentation/widgets/dot_loading_widget.dart';
 import 'package:hiit/core/utils/prefs_operator.dart';
-import 'package:hiit/features/feature_bookmark/domain/entities/city_entity.dart';
-import 'package:hiit/features/feature_bookmark/presentation/bloc/bookmark_bloc.dart';
-import 'package:hiit/features/feature_bookmark/presentation/bloc/get_city_status.dart';
-import 'package:hiit/features/feature_bookmark/presentation/bloc/save_city_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hiit/features/feature_weather/domain/entities/current_city_entity.dart';
@@ -14,9 +10,12 @@ import 'package:hiit/locator.dart';
 import 'package:location/location.dart';
 
 class LocationIcon extends StatelessWidget {
-  final String name;
+  final String cityName;
 
-  LocationIcon({super.key, required this.name});
+  LocationIcon({super.key, required this.cityName});
+
+  /// local operation
+  PrefsOperator prefsOperator = locator();
 
   /// location operation
   late bool _serviceEnabled;
@@ -24,13 +23,16 @@ class LocationIcon extends StatelessWidget {
 
   Future<void> getUserLocation(BuildContext context) async {
     Location location = Location();
+    var cityNameSelected = prefsOperator.getCitySelected();
 
     // Check if location service is enable
     _serviceEnabled = await location.serviceEnabled();
     if (!_serviceEnabled) {
       _serviceEnabled = await location.requestService();
       if (!_serviceEnabled) {
-        // _refreshCurrentWeather;
+        BlocProvider.of<HomeBloc>(context).add(
+          LoadCwEvent(cityNameSelected ?? cityName),
+        );
         return;
       }
     }
@@ -41,7 +43,9 @@ class LocationIcon extends StatelessWidget {
       _permissionGranted = await location.requestPermission();
       if (_permissionGranted != PermissionStatus.granted) {
         /// call api with default
-        // _refreshCurrentWeather;
+        BlocProvider.of<HomeBloc>(context).add(
+          LoadCwEvent(cityNameSelected ?? cityName),
+        );
         return;
       }
     }
@@ -60,7 +64,7 @@ class LocationIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    // final width = MediaQuery.of(context).size.width;
     return BlocConsumer<HomeBloc, HomeState>(
       listenWhen: (previous, current) {
         /// if state don't change => don't listen to changes
@@ -83,7 +87,6 @@ class LocationIcon extends StatelessWidget {
               lwCompleted.currentCityEntity;
 
           /// save city name from current location
-          PrefsOperator prefsOperator = locator();
           prefsOperator.saveCitySelected(currentCityEntity.name!);
 
           ScaffoldMessenger.of(context).showSnackBar(
