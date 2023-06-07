@@ -1,3 +1,5 @@
+import 'package:hiit/core/error_handling/app_exception.dart';
+import 'package:hiit/core/error_handling/check_exceptions.dart';
 import 'package:hiit/core/params/forecast_params.dart';
 import 'package:hiit/core/resources/data_state.dart';
 import 'package:hiit/features/feature_weather/data/data_source/remote/api_provider.dart';
@@ -23,15 +25,11 @@ class WeatherRepositoryImpl extends WeatherRepository {
     try {
       Response response = await _apiProvider.callCurrentWeather(cityName);
 
-      if (response.statusCode == 200) {
-        CurrentCityEntity currentCityEntity =
-            CurrentCityModel.fromJson(response.data);
-        return DataSuccess(currentCityEntity);
-      } else {
-        return const DataFailed("Something Went Wrong. try again ...");
-      }
-    } catch (e) {
-      return const DataFailed("Please check connection ...");
+      CurrentCityEntity currentCityEntity =
+          CurrentCityModel.fromJson(response.data);
+      return DataSuccess(currentCityEntity);
+    } on AppException catch (e) {
+      return await CheckExceptions.getError(e);
     }
   }
 
@@ -41,16 +39,11 @@ class WeatherRepositoryImpl extends WeatherRepository {
     try {
       Response response = await _apiProvider.sendRequest7DaysForcast(params);
 
-      if (response.statusCode == 200) {
-        ForecastDaysEntity forecastDaysEntity =
-            ForecastDaysModel.fromJson(response.data);
-        return DataSuccess(forecastDaysEntity);
-      } else {
-        return const DataFailed("Something Went Wrong. try again...");
-      }
-    } catch (e) {
-      // print(e.toString());
-      return const DataFailed("please check your connection...");
+      ForecastDaysEntity forecastDaysEntity =
+          ForecastDaysModel.fromJson(response.data);
+      return DataSuccess(forecastDaysEntity);
+    } on AppException catch (e) {
+      return await CheckExceptions.getError(e);
     }
   }
 
@@ -60,27 +53,27 @@ class WeatherRepositoryImpl extends WeatherRepository {
     try {
       Response response = await _apiProvider.sendRequest48HoursForcast(params);
 
-      if (response.statusCode == 200) {
-        ForecastHourlyEntity forecastHourlyEntity =
-            ForecastHourlyModel.fromJson(response.data);
+      ForecastHourlyEntity forecastHourlyEntity =
+          ForecastHourlyModel.fromJson(response.data);
 
-        return DataSuccess(forecastHourlyEntity);
-      } else {
-        return const DataFailed("Something Went Wrong. try again...");
-      }
-    } catch (e) {
-      print(e);
-      return const DataFailed("please check your connection...");
+      return DataSuccess(forecastHourlyEntity);
+    } on AppException catch (e) {
+      return await CheckExceptions.getError(e);
     }
   }
 
   @override
   Future<List<Data>> fetchSuggestData(cityName) async {
-    Response response = await _apiProvider.sendRequestCitySuggestion(cityName);
-    SuggestCityEntity suggestCityEntity =
-        SuggestCityModel.fromJson(response.data);
+    try {
+      Response response =
+          await _apiProvider.sendRequestCitySuggestion(cityName);
+      SuggestCityEntity suggestCityEntity =
+          SuggestCityModel.fromJson(response.data);
 
-    return suggestCityEntity.data!;
+      return suggestCityEntity.data!;
+    } on AppException catch (e) {
+      return await CheckExceptions.getError(e);
+    }
   }
 
   @override
@@ -89,16 +82,11 @@ class WeatherRepositoryImpl extends WeatherRepository {
     try {
       Response response = await _apiProvider.callCurrentWeatherLocation(params);
 
-      if (response.statusCode == 200) {
-        CurrentCityEntity currentCityEntity =
-            CurrentCityModel.fromJson(response.data);
-        return DataSuccess(currentCityEntity);
-      } else {
-        return const DataFailed("Something Went Wrong. try again...");
-      }
-    } catch (e) {
-      // print(e.toString());
-      return const DataFailed("please check your connection...");
+      CurrentCityEntity currentCityEntity =
+          CurrentCityModel.fromJson(response.data);
+      return DataSuccess(currentCityEntity);
+    } on AppException catch (e) {
+      return await CheckExceptions.getError(e);
     }
   }
 }
