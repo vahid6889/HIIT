@@ -203,16 +203,15 @@ class _HomeScreenState extends State<HomeScreen>
                               itemCount: 2,
                               itemBuilder: (context, position) {
                                 if (position == 0) {
-                                  CurrentWeatherView(
+                                  return CurrentWeatherView(
                                     currentCityEntity: currentCityEntity,
                                   );
                                 } else {
                                   /// forecast weather 48 hourly
-                                  HourlyWeatherView(
+                                  return HourlyWeatherView(
                                     forecastParams: forecastParams,
                                   );
                                 }
-                                return Container();
                               },
                             ),
                           ),

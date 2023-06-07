@@ -204,7 +204,7 @@ class Hourly {
     dynamic uvi,
     int? clouds,
     int? visibility,
-    double? windSpeed,
+    dynamic windSpeed,
     int? windDeg,
     dynamic windGust,
     List<Weather>? weather,
@@ -256,7 +256,7 @@ class Hourly {
   dynamic _uvi;
   int? _clouds;
   int? _visibility;
-  double? _windSpeed;
+  dynamic _windSpeed;
   int? _windDeg;
   dynamic _windGust;
   List<Weather>? _weather;
@@ -271,7 +271,7 @@ class Hourly {
   dynamic get uvi => _uvi;
   int? get clouds => _clouds;
   int? get visibility => _visibility;
-  double? get windSpeed => _windSpeed;
+  dynamic get windSpeed => _windSpeed;
   int? get windDeg => _windDeg;
   dynamic get windGust => _windGust;
   List<Weather>? get weather => _weather;
