@@ -1,7 +1,7 @@
-import 'package:hiit/core/presentation/widgets/app_background.dart';
-import 'package:hiit/core/presentation/widgets/bottom_nav.dart';
-import 'package:hiit/features/feature_bookmark/presentation/screens/bookmark_screen.dart';
-import 'package:hiit/features/feature_weather/presentation/screens/home_screen.dart';
+import 'package:Hiit/core/presentation/widgets/app_background.dart';
+import 'package:Hiit/core/presentation/widgets/bottom_nav.dart';
+import 'package:Hiit/features/feature_bookmark/presentation/screens/bookmark_screen.dart';
+import 'package:Hiit/features/feature_weather/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

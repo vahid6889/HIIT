@@ -1,7 +1,7 @@
-import 'package:hiit/core/error_handling/check_exceptions.dart';
-import 'package:hiit/core/utils/constants.dart';
+import 'package:Hiit/core/error_handling/check_exceptions.dart';
+import 'package:Hiit/core/utils/constants.dart';
 import 'package:dio/dio.dart';
-import 'package:hiit/core/params/forecast_params.dart';
+import 'package:Hiit/core/params/forecast_params.dart';
 
 class ApiProvider {
   final Dio _dio = Dio();

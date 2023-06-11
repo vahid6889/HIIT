@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hiit/core/presentation/widgets/app_background.dart';
-import 'package:hiit/core/presentation/widgets/dot_loading_widget.dart';
-import 'package:hiit/features/feature_weather/domain/entities/current_air_quality_city_entity.dart';
-import 'package:hiit/features/feature_weather/domain/entities/current_city_entity.dart';
-import 'package:hiit/features/feature_weather/presentation/bloc/aq_status.dart';
-import 'package:hiit/features/feature_weather/presentation/bloc/home_bloc.dart';
+import 'package:Hiit/core/presentation/widgets/app_background.dart';
+import 'package:Hiit/core/presentation/widgets/dot_loading_widget.dart';
+import 'package:Hiit/features/feature_weather/domain/entities/current_air_quality_city_entity.dart';
+import 'package:Hiit/features/feature_weather/domain/entities/current_city_entity.dart';
+import 'package:Hiit/features/feature_weather/presentation/bloc/aq_status.dart';
+import 'package:Hiit/features/feature_weather/presentation/bloc/home_bloc.dart';
 
 class PropertlyWeatherView extends StatelessWidget {
   final CurrentCityEntity currentCityEntity;

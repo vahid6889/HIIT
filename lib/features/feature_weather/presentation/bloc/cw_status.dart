@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:hiit/features/feature_weather/domain/entities/current_city_entity.dart';
+import 'package:Hiit/features/feature_weather/domain/entities/current_city_entity.dart';
 import 'package:flutter/material.dart';
 
 @immutable

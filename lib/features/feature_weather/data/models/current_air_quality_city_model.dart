@@ -1,4 +1,4 @@
-import 'package:hiit/features/feature_weather/domain/entities/current_air_quality_city_entity.dart';
+import 'package:Hiit/features/feature_weather/domain/entities/current_air_quality_city_entity.dart';
 
 class CurrentAirQualityCityModel extends CurrentAirQualityCityEntity {
   const CurrentAirQualityCityModel({

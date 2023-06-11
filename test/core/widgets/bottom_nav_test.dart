@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiit/core/presentation/widgets/bottom_nav.dart';
+import 'package:Hiit/core/presentation/widgets/bottom_nav.dart';
 
 void main() {
   testWidgets(

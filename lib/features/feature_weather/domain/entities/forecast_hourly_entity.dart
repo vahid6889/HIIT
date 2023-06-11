@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:hiit/features/feature_weather/data/models/forecast_hourly_model.dart';
+import 'package:Hiit/features/feature_weather/data/models/forecast_hourly_model.dart';
 
 class ForecastHourlyEntity extends Equatable {
   final double? lat;

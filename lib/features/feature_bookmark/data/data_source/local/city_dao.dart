@@ -1,4 +1,4 @@
-import 'package:hiit/features/feature_bookmark/domain/entities/city_entity.dart';
+import 'package:Hiit/features/feature_bookmark/domain/entities/city_entity.dart';
 import 'package:floor/floor.dart';
 
 @dao

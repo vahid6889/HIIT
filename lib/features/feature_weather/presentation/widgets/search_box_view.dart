@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:hiit/core/utils/prefs_operator.dart';
-import 'package:hiit/features/feature_weather/data/models/suggest_city_model.dart';
-import 'package:hiit/features/feature_weather/domain/use_cases/get_suggestion_city_usecase.dart';
-import 'package:hiit/features/feature_weather/presentation/bloc/home_bloc.dart';
-import 'package:hiit/locator.dart';
+import 'package:Hiit/core/utils/prefs_operator.dart';
+import 'package:Hiit/features/feature_weather/data/models/suggest_city_model.dart';
+import 'package:Hiit/features/feature_weather/domain/use_cases/get_suggestion_city_usecase.dart';
+import 'package:Hiit/features/feature_weather/presentation/bloc/home_bloc.dart';
+import 'package:Hiit/locator.dart';
 
 class SearchBoxView extends StatelessWidget {
   final TextEditingController textEditingController;

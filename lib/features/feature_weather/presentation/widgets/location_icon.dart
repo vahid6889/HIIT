@@ -1,12 +1,12 @@
-import 'package:hiit/core/params/forecast_params.dart';
-import 'package:hiit/core/presentation/widgets/dot_loading_widget.dart';
-import 'package:hiit/core/utils/prefs_operator.dart';
+import 'package:Hiit/core/params/forecast_params.dart';
+import 'package:Hiit/core/presentation/widgets/dot_loading_widget.dart';
+import 'package:Hiit/core/utils/prefs_operator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hiit/features/feature_weather/domain/entities/current_city_entity.dart';
-import 'package:hiit/features/feature_weather/presentation/bloc/home_bloc.dart';
-import 'package:hiit/features/feature_weather/presentation/bloc/lw_status.dart';
-import 'package:hiit/locator.dart';
+import 'package:Hiit/features/feature_weather/domain/entities/current_city_entity.dart';
+import 'package:Hiit/features/feature_weather/presentation/bloc/home_bloc.dart';
+import 'package:Hiit/features/feature_weather/presentation/bloc/lw_status.dart';
+import 'package:Hiit/locator.dart';
 import 'package:location/location.dart';
 
 class LocationIcon extends StatelessWidget {

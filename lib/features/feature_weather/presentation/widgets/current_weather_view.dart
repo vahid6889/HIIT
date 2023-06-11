@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hiit/core/presentation/widgets/app_background.dart';
-import 'package:hiit/features/feature_weather/domain/entities/current_city_entity.dart';
+import 'package:Hiit/core/presentation/widgets/app_background.dart';
+import 'package:Hiit/features/feature_weather/domain/entities/current_city_entity.dart';
 
 class CurrentWeatherView extends StatelessWidget {
   final CurrentCityEntity currentCityEntity;

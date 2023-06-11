@@ -1,7 +1,7 @@
-import 'package:hiit/core/resources/data_state.dart';
-import 'package:hiit/core/usecase/use_case.dart';
-import 'package:hiit/features/feature_weather/domain/entities/current_city_entity.dart';
-import 'package:hiit/features/feature_weather/domain/repository/weather_repository.dart';
+import 'package:Hiit/core/resources/data_state.dart';
+import 'package:Hiit/core/usecase/use_case.dart';
+import 'package:Hiit/features/feature_weather/domain/entities/current_city_entity.dart';
+import 'package:Hiit/features/feature_weather/domain/repository/weather_repository.dart';
 
 class GetCurrentWeatherUseCase
     implements UseCase<DataState<CurrentCityEntity>, String> {

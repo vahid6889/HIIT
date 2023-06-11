@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:hiit/features/feature_weather/data/models/suggest_city_model.dart';
+import 'package:Hiit/features/feature_weather/data/models/suggest_city_model.dart';
 
 class SuggestCityEntity extends Equatable {
   final List<Data>? data;

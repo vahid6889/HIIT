@@ -1,5 +1,5 @@
-import 'package:hiit/features/feature_bookmark/presentation/screens/bookmark_screen.dart';
-import 'package:hiit/features/feature_weather/presentation/screens/home_screen.dart';
+import 'package:Hiit/features/feature_bookmark/presentation/screens/bookmark_screen.dart';
+import 'package:Hiit/features/feature_weather/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class BottomNav extends StatelessWidget {

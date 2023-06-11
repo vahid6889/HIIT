@@ -1,4 +1,4 @@
-import 'package:hiit/features/feature_weather/domain/entities/current_city_entity.dart';
+import 'package:Hiit/features/feature_weather/domain/entities/current_city_entity.dart';
 
 /// coord : {"lon":51.4215,"lat":35.6944}
 /// weather : [{"id":800,"main":"Clear","description":"clear sky","icon":"01d"}]

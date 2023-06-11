@@ -1,4 +1,4 @@
-import 'package:hiit/features/feature_weather/domain/entities/forecast_days_entity.dart';
+import 'package:Hiit/features/feature_weather/domain/entities/forecast_days_entity.dart';
 
 /// lat : 51.4215
 /// lon : 35.6944

@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hiit/core/presentation/widgets/app_background.dart';
-import 'package:hiit/core/presentation/widgets/dot_loading_widget.dart';
-import 'package:hiit/core/utils/date_converter.dart';
-import 'package:hiit/features/feature_weather/data/models/forecast_days_model.dart';
+import 'package:Hiit/core/presentation/widgets/app_background.dart';
+import 'package:Hiit/core/presentation/widgets/dot_loading_widget.dart';
+import 'package:Hiit/core/utils/date_converter.dart';
+import 'package:Hiit/features/feature_weather/data/models/forecast_days_model.dart';
 import 'package:flutter/material.dart';
-import 'package:hiit/features/feature_weather/domain/entities/forecast_days_entity.dart';
-import 'package:hiit/features/feature_weather/presentation/bloc/fw_status.dart';
-import 'package:hiit/features/feature_weather/presentation/bloc/home_bloc.dart';
+import 'package:Hiit/features/feature_weather/domain/entities/forecast_days_entity.dart';
+import 'package:Hiit/features/feature_weather/presentation/bloc/fw_status.dart';
+import 'package:Hiit/features/feature_weather/presentation/bloc/home_bloc.dart';
 
 class DaysWeatherView extends StatefulWidget {
   const DaysWeatherView({super.key});

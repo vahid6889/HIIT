@@ -1,4 +1,4 @@
-import 'package:hiit/features/feature_weather/domain/entities/suggest_city_entity.dart';
+import 'package:Hiit/features/feature_weather/domain/entities/suggest_city_entity.dart';
 
 /// data : [{"id":58764,"wikiDataId":"Q605157","type":"CITY","city":"Babol","name":"Babol","country":"Iran","countryCode":"IR","region":"Mazandaran","regionCode":"21","latitude":36.55,"longitude":52.683333333,"population":250217}]
 /// metadata : {"currentOffset":0,"totalCount":1}

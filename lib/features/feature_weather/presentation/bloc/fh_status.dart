@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:hiit/features/feature_weather/domain/entities/forecast_hourly_entity.dart';
+import 'package:Hiit/features/feature_weather/domain/entities/forecast_hourly_entity.dart';
 
 @immutable
 abstract class FhStatus extends Equatable {}

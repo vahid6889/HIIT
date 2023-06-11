@@ -1,4 +1,4 @@
-import 'package:hiit/core/utils/date_converter.dart';
+import 'package:Hiit/core/utils/date_converter.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

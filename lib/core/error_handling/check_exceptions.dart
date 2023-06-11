@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:hiit/core/resources/data_state.dart';
+import 'package:Hiit/core/resources/data_state.dart';
 import 'app_exception.dart';
 
 class CheckExceptions {

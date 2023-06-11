@@ -1,4 +1,4 @@
-import 'package:hiit/features/feature_weather/domain/entities/forecast_hourly_entity.dart';
+import 'package:Hiit/features/feature_weather/domain/entities/forecast_hourly_entity.dart';
 
 class ForecastHourlyModel extends ForecastHourlyEntity {
   const ForecastHourlyModel({
