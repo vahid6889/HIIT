@@ -7,6 +7,8 @@ import 'dart:async' as _i5;
 
 import 'package:hiit/core/params/forecast_params.dart' as _i9;
 import 'package:hiit/core/resources/data_state.dart' as _i3;
+import 'package:hiit/features/feature_weather/domain/entities/current_air_quality_city_entity.dart'
+    as _i14;
 import 'package:hiit/features/feature_weather/domain/entities/current_city_entity.dart'
     as _i6;
 import 'package:hiit/features/feature_weather/domain/entities/forecast_days_entity.dart'
@@ -15,6 +17,8 @@ import 'package:hiit/features/feature_weather/domain/entities/forecast_hourly_en
     as _i11;
 import 'package:hiit/features/feature_weather/domain/repository/weather_repository.dart'
     as _i2;
+import 'package:hiit/features/feature_weather/domain/use_cases/get_current_air_quality_city_usecase.dart'
+    as _i13;
 import 'package:hiit/features/feature_weather/domain/use_cases/get_current_weather_location_usecase.dart'
     as _i12;
 import 'package:hiit/features/feature_weather/domain/use_cases/get_current_weather_usecase.dart'
@@ -182,4 +186,41 @@ class MockGetCurrentWeatherLocationUseCase extends _i1.Mock
           ),
         )),
       ) as _i5.Future<_i3.DataState<_i6.CurrentCityEntity>>);
+}
+
+/// A class which mocks [GetCurrentAirQualityCityUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetCurrentAirQualityCityUsecase extends _i1.Mock
+    implements _i13.GetCurrentAirQualityCityUsecase {
+  MockGetCurrentAirQualityCityUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.WeatherRepository get weatherRepository => (super.noSuchMethod(
+        Invocation.getter(#weatherRepository),
+        returnValue: _FakeWeatherRepository_0(
+          this,
+          Invocation.getter(#weatherRepository),
+        ),
+      ) as _i2.WeatherRepository);
+  @override
+  _i5.Future<_i3.DataState<_i14.CurrentAirQualityCityEntity>> call(
+          _i9.ForecastParams? params) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValue:
+            _i5.Future<_i3.DataState<_i14.CurrentAirQualityCityEntity>>.value(
+                _FakeDataState_1<_i14.CurrentAirQualityCityEntity>(
+          this,
+          Invocation.method(
+            #call,
+            [params],
+          ),
+        )),
+      ) as _i5.Future<_i3.DataState<_i14.CurrentAirQualityCityEntity>>);
 }

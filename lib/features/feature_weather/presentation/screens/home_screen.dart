@@ -7,6 +7,7 @@ import 'package:hiit/features/feature_weather/domain/entities/current_city_entit
 import 'package:hiit/features/feature_weather/domain/use_cases/get_suggestion_city_usecase.dart';
 import 'package:hiit/features/feature_weather/presentation/bloc/cw_status.dart';
 import 'package:hiit/features/feature_weather/presentation/bloc/home_bloc.dart';
+import 'package:hiit/features/feature_weather/presentation/widgets/air_quality_view.dart';
 import 'package:hiit/features/feature_weather/presentation/widgets/bookmark_icon.dart';
 import 'package:hiit/features/feature_weather/presentation/widgets/current_weather_view.dart';
 import 'package:hiit/features/feature_weather/presentation/widgets/days_weather_view.dart';
@@ -177,6 +178,11 @@ class _HomeScreenState extends State<HomeScreen>
                     LoadFhEvent(forecastParams),
                   );
 
+                  /// start load Aq event
+                  BlocProvider.of<HomeBloc>(context).add(
+                    LoadAqEvent(forecastParams),
+                  );
+
                   /// change Times to Hour --5:55 AM/PM----
                   final sunrise = DateConverter.changeDtToDateTimeHour(
                     currentCityEntity.sys!.sunrise,
@@ -192,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen>
                       children: [
                         /// page view touch drift
                         Padding(
-                          padding: EdgeInsets.only(top: height * 0.02),
+                          padding: EdgeInsets.only(top: height * 0.01),
                           child: SizedBox(
                             width: width,
                             height: 370,
@@ -238,7 +244,7 @@ class _HomeScreenState extends State<HomeScreen>
 
                         /// divider
                         Padding(
-                          padding: const EdgeInsets.only(top: 30),
+                          padding: const EdgeInsets.only(top: 10),
                           child: Container(
                             color: Colors.white24,
                             height: 2,
@@ -251,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen>
 
                         /// divider
                         Padding(
-                          padding: const EdgeInsets.only(top: 15),
+                          padding: const EdgeInsets.only(top: 10),
                           child: Container(
                             color: Colors.white24,
                             height: 2,
@@ -259,14 +265,29 @@ class _HomeScreenState extends State<HomeScreen>
                           ),
                         ),
 
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 10),
 
-                        /// last row propertly weather
+                        /// propertly weather
                         PropertlyWeatherView(
                           currentCityEntity: currentCityEntity,
                           sunrise: sunrise,
                           sunset: sunset,
                         ),
+
+                        /// divider
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Container(
+                            color: Colors.white24,
+                            height: 2,
+                            width: double.infinity,
+                          ),
+                        ),
+
+                        const SizedBox(height: 10),
+
+                        /// air quality
+                        const AirQualityView(),
 
                         const SizedBox(height: 30),
                       ],

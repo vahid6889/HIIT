@@ -5,12 +5,14 @@ class HomeState extends Equatable {
   FwStatus fwStatus;
   FhStatus fhStatus;
   LwStatus lwStatus;
+  AqStatus aqStatus;
 
   HomeState({
     required this.cwStatus,
     required this.fwStatus,
     required this.fhStatus,
     required this.lwStatus,
+    required this.aqStatus,
   });
 
   HomeState copyWith({
@@ -18,12 +20,14 @@ class HomeState extends Equatable {
     FwStatus? newFwStatus,
     FhStatus? newFhStatus,
     LwStatus? newLwStatus,
+    AqStatus? newAqStatus,
   }) {
     return HomeState(
       cwStatus: newCwStatus ?? cwStatus,
       fwStatus: newFwStatus ?? fwStatus,
       fhStatus: newFhStatus ?? fhStatus,
       lwStatus: newLwStatus ?? lwStatus,
+      aqStatus: newAqStatus ?? aqStatus,
     );
   }
 
@@ -34,5 +38,6 @@ class HomeState extends Equatable {
         fwStatus,
         fhStatus,
         lwStatus,
+        aqStatus,
       ];
 }

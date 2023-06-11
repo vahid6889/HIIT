@@ -16,6 +16,10 @@ class PrefsOperator {
     return cityName;
   }
 
+  saveAirQualityMain(qualityName) async {
+    sharedPreferences.setString("quality_name", qualityName);
+  }
+
   Future<void> destroy() async {
     sharedPreferences.clear();
   }

@@ -10,6 +10,7 @@ import 'package:hiit/features/feature_bookmark/presentation/bloc/bookmark_bloc.d
 import 'package:hiit/features/feature_weather/data/data_source/remote/api_provider.dart';
 import 'package:hiit/features/feature_weather/data/repository/weather_repositoryImpl.dart';
 import 'package:hiit/features/feature_weather/domain/repository/weather_repository.dart';
+import 'package:hiit/features/feature_weather/domain/use_cases/get_current_air_quality_city_usecase.dart';
 import 'package:hiit/features/feature_weather/domain/use_cases/get_current_weather_location_usecase.dart';
 import 'package:hiit/features/feature_weather/domain/use_cases/get_current_weather_usecase.dart';
 import 'package:hiit/features/feature_weather/domain/use_cases/get_forecast_hourly_usecase.dart';
@@ -50,9 +51,11 @@ setup() async {
   locator.registerSingleton<SaveCityUseCase>(SaveCityUseCase(locator()));
   locator.registerSingleton<GetAllCityUseCase>(GetAllCityUseCase(locator()));
   locator.registerSingleton<DeleteCityUseCase>(DeleteCityUseCase(locator()));
+  locator.registerSingleton<GetCurrentAirQualityCityUsecase>(
+      GetCurrentAirQualityCityUsecase(locator()));
 
-  locator
-      .registerSingleton(HomeBloc(locator(), locator(), locator(), locator()));
+  locator.registerSingleton(
+      HomeBloc(locator(), locator(), locator(), locator(), locator()));
   locator.registerSingleton(
       BookmarkBloc(locator(), locator(), locator(), locator()));
 }

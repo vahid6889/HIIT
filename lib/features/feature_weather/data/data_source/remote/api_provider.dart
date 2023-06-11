@@ -87,4 +87,19 @@ class ApiProvider {
       return CheckExceptions.response(e.response!);
     }
   }
+
+  /// current weather api with lat & lon location
+  Future<dynamic> callCurrentAirQualityCity(ForecastParams params) async {
+    try {
+      var response = await _dio
+          .get("${Constants.baseUrl}/data/2.5/air_pollution", queryParameters: {
+        'lat': params.lat,
+        'lon': params.lon,
+        'appid': apiKey,
+      });
+      return response;
+    } on DioError catch (e) {
+      return CheckExceptions.response(e.response!);
+    }
+  }
 }

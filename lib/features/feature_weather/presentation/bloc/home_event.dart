@@ -26,3 +26,9 @@ class LoadFhEvent extends HomeEvent {
 
   LoadFhEvent(this.forecastParams);
 }
+
+class LoadAqEvent extends HomeEvent {
+  final ForecastParams forecastParams;
+
+  LoadAqEvent(this.forecastParams);
+}

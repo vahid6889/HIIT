@@ -4,10 +4,12 @@ import 'package:hiit/core/resources/data_state.dart';
 import 'package:hiit/features/feature_weather/domain/entities/current_city_entity.dart';
 import 'package:hiit/features/feature_weather/domain/entities/forecast_days_entity.dart';
 import 'package:hiit/features/feature_weather/domain/entities/forecast_hourly_entity.dart';
+import 'package:hiit/features/feature_weather/domain/use_cases/get_current_air_quality_city_usecase.dart';
 import 'package:hiit/features/feature_weather/domain/use_cases/get_current_weather_location_usecase.dart';
 import 'package:hiit/features/feature_weather/domain/use_cases/get_current_weather_usecase.dart';
 import 'package:hiit/features/feature_weather/domain/use_cases/get_forecast_hourly_usecase.dart';
 import 'package:hiit/features/feature_weather/domain/use_cases/get_forecast_weather_usecase.dart';
+import 'package:hiit/features/feature_weather/presentation/bloc/aq_status.dart';
 import 'package:hiit/features/feature_weather/presentation/bloc/cw_status.dart';
 import 'package:hiit/features/feature_weather/presentation/bloc/fh_status.dart';
 import 'package:hiit/features/feature_weather/presentation/bloc/fw_status.dart';
@@ -25,6 +27,7 @@ import 'home_bloc_test.mocks.dart';
   GetForecastWeatherUseCase,
   GetForecastHourlyUseCase,
   GetCurrentWeatherLocationUseCase,
+  GetCurrentAirQualityCityUsecase,
 ])
 void main() {
   MockGetCurrentWeatherUseCase mockGetCurrentWeatherUseCase =
@@ -35,6 +38,8 @@ void main() {
       MockGetForecastHourlyUseCase();
   MockGetCurrentWeatherLocationUseCase mockGetCurrentWeatherLocationUseCase =
       MockGetCurrentWeatherLocationUseCase();
+  MockGetCurrentAirQualityCityUsecase mockGetCurrentAirQualityCityUsecase =
+      MockGetCurrentAirQualityCityUsecase();
   String cityName = 'Tehran';
   String error = 'error';
   double lat = 35.6944;
@@ -58,6 +63,7 @@ void main() {
           mockGetForecastWeatherUseCase,
           mockGetForecastHourlyUseCase,
           mockGetCurrentWeatherLocationUseCase,
+          mockGetCurrentAirQualityCityUsecase,
         ),
         act: (bloc) {
           bloc.add(LoadCwEvent(cityName));
@@ -68,12 +74,14 @@ void main() {
             fwStatus: FwLoading(),
             fhStatus: FhLoading(),
             lwStatus: LwInitial(),
+            aqStatus: AqLoading(),
           ),
           HomeState(
             cwStatus: CwCompleted(const CurrentCityEntity()),
             fwStatus: FwLoading(),
             fhStatus: FhLoading(),
             lwStatus: LwInitial(),
+            aqStatus: AqLoading(),
           ),
         ],
       );
@@ -87,6 +95,7 @@ void main() {
           mockGetForecastWeatherUseCase,
           mockGetForecastHourlyUseCase,
           mockGetCurrentWeatherLocationUseCase,
+          mockGetCurrentAirQualityCityUsecase,
         );
         bloc.add(LoadCwEvent(cityName));
 
@@ -98,12 +107,14 @@ void main() {
                 fwStatus: FwLoading(),
                 fhStatus: FhLoading(),
                 lwStatus: LwInitial(),
+                aqStatus: AqLoading(),
               ),
               HomeState(
                 cwStatus: CwError(error),
                 fwStatus: FwLoading(),
                 fhStatus: FhLoading(),
                 lwStatus: LwInitial(),
+                aqStatus: AqLoading(),
               ),
             ]));
       });
@@ -115,6 +126,7 @@ void main() {
           mockGetForecastWeatherUseCase,
           mockGetForecastHourlyUseCase,
           mockGetCurrentWeatherLocationUseCase,
+          mockGetCurrentAirQualityCityUsecase,
         ),
         act: (bloc) {
           // bloc.add(LoadCwEvent(cityName));
@@ -127,6 +139,7 @@ void main() {
             fwStatus: FwLoading(),
             fhStatus: FhLoading(),
             lwStatus: LwInitial(),
+            aqStatus: AqLoading(),
           ),
           // HomeState(
           //   cwStatus: CwCompleted(const CurrentCityEntity()),
@@ -140,6 +153,7 @@ void main() {
             fwStatus: FwCompleted(const ForecastDaysEntity()),
             fhStatus: FhLoading(),
             lwStatus: LwInitial(),
+            aqStatus: AqLoading(),
           ),
         ],
       );
@@ -151,6 +165,7 @@ void main() {
           mockGetForecastWeatherUseCase,
           mockGetForecastHourlyUseCase,
           mockGetCurrentWeatherLocationUseCase,
+          mockGetCurrentAirQualityCityUsecase,
         ),
         act: (bloc) {
           final ForecastParams forecastParams = ForecastParams(lat, lon);
@@ -162,12 +177,14 @@ void main() {
             fwStatus: FwLoading(),
             fhStatus: FhLoading(),
             lwStatus: LwInitial(),
+            aqStatus: AqLoading(),
           ),
           HomeState(
             cwStatus: CwLoading(),
             fwStatus: FwLoading(),
             fhStatus: FhCompleted(const ForecastHourlyEntity()),
             lwStatus: LwInitial(),
+            aqStatus: AqLoading(),
           ),
         ],
       );
@@ -179,6 +196,7 @@ void main() {
           mockGetForecastWeatherUseCase,
           mockGetForecastHourlyUseCase,
           mockGetCurrentWeatherLocationUseCase,
+          mockGetCurrentAirQualityCityUsecase,
         ),
         act: (bloc) {
           final ForecastParams forecastParams = ForecastParams(lat, lon);
@@ -190,18 +208,21 @@ void main() {
             fwStatus: FwLoading(),
             fhStatus: FhLoading(),
             lwStatus: LwLoading(),
+            aqStatus: AqLoading(),
           ),
           HomeState(
             cwStatus: CwLoading(),
             fwStatus: FwLoading(),
             fhStatus: FhLoading(),
             lwStatus: LwCompleted(const CurrentCityEntity()),
+            aqStatus: AqLoading(),
           ),
           HomeState(
             cwStatus: CwCompleted(const CurrentCityEntity()),
             fwStatus: FwLoading(),
             fhStatus: FhLoading(),
             lwStatus: LwCompleted(const CurrentCityEntity()),
+            aqStatus: AqLoading(),
           ),
         ],
       );

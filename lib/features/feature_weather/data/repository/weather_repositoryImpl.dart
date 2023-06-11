@@ -3,10 +3,12 @@ import 'package:hiit/core/error_handling/check_exceptions.dart';
 import 'package:hiit/core/params/forecast_params.dart';
 import 'package:hiit/core/resources/data_state.dart';
 import 'package:hiit/features/feature_weather/data/data_source/remote/api_provider.dart';
+import 'package:hiit/features/feature_weather/data/models/current_air_quality_city_model.dart';
 import 'package:hiit/features/feature_weather/data/models/current_city_model.dart';
 import 'package:hiit/features/feature_weather/data/models/forecast_days_model.dart';
 import 'package:hiit/features/feature_weather/data/models/forecast_hourly_model.dart';
 import 'package:hiit/features/feature_weather/data/models/suggest_city_model.dart';
+import 'package:hiit/features/feature_weather/domain/entities/current_air_quality_city_entity.dart';
 import 'package:hiit/features/feature_weather/domain/entities/current_city_entity.dart';
 import 'package:hiit/features/feature_weather/domain/entities/forecast_days_entity.dart';
 import 'package:hiit/features/feature_weather/domain/entities/forecast_hourly_entity.dart';
@@ -43,7 +45,8 @@ class WeatherRepositoryImpl extends WeatherRepository {
           ForecastDaysModel.fromJson(response.data);
       return DataSuccess(forecastDaysEntity);
     } on AppException catch (e) {
-      return await CheckExceptions.getError(e);
+      print('FOOOOOOOOOORRRRRRR');
+      return await CheckExceptions.getError(e.message);
     }
   }
 
@@ -85,6 +88,20 @@ class WeatherRepositoryImpl extends WeatherRepository {
       CurrentCityEntity currentCityEntity =
           CurrentCityModel.fromJson(response.data);
       return DataSuccess(currentCityEntity);
+    } on AppException catch (e) {
+      return await CheckExceptions.getError(e);
+    }
+  }
+
+  @override
+  Future<DataState<CurrentAirQualityCityEntity>> fetchCurrentAirQualityCity(
+      ForecastParams params) async {
+    try {
+      Response response = await _apiProvider.callCurrentAirQualityCity(params);
+
+      CurrentAirQualityCityEntity currentAirQualityCityEntity =
+          CurrentAirQualityCityModel.fromJson(response.data);
+      return DataSuccess(currentAirQualityCityEntity);
     } on AppException catch (e) {
       return await CheckExceptions.getError(e);
     }

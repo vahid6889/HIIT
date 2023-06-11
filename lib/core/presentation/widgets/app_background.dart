@@ -50,32 +50,45 @@ class AppBackground {
           image: const AssetImage('assets/images/icons8-windy-weather-80.png'),
         );
     }
+  }
 
-    // if (description == "clear sky") {
-    //   return const Image(
-    //       image: AssetImage(
-    //     'assets/images/icons8-sun-96.png',
-    //   ));
-    // } else if (description == "few clouds") {
-    //   return const Image(
-    //       image: AssetImage('assets/images/icons8-partly-cloudy-day-80.png'));
-    // } else if (description.contains("clouds")) {
-    //   return const Image(
-    //       image: AssetImage('assets/images/icons8-clouds-80.png'));
-    // } else if (description.contains("thunderstorm")) {
-    //   return const Image(
-    //       image: AssetImage('assets/images/icons8-storm-80.png'));
-    // } else if (description.contains("drizzle")) {
-    //   return const Image(
-    //       image: AssetImage('assets/images/icons8-rain-cloud-80.png'));
-    // } else if (description.contains("rain")) {
-    //   return const Image(
-    //       image: AssetImage('assets/images/icons8-heavy-rain-80.png'));
-    // } else if (description.contains("snow")) {
-    //   return const Image(image: AssetImage('assets/images/icons8-snow-80.png'));
-    // } else {
-    //   return const Image(
-    //       image: AssetImage('assets/images/icons8-windy-weather-80.png'));
-    // }
+  static String setAirQualityForMain(index) {
+    switch (index) {
+      case 1:
+        return "Good";
+      case 2:
+        return "Fair";
+      case 3:
+        return "Moderate";
+      case 4:
+        return "Poor";
+      case 5:
+        return "Very Poor";
+      default:
+        return "No index";
+    }
+  }
+
+  static String setAirQualityForComponents(componentName) {
+    switch (componentName) {
+      case "co":
+        return "Carbon monoxide";
+      case "no":
+        return "Nitrogen monoxide";
+      case "no2":
+        return "Nitrogen dioxide";
+      case "o3":
+        return "Ozone";
+      case "so2":
+        return "Sulphur dioxide";
+      case "pm2_5":
+        return "Fine particles matter";
+      case "pm10":
+        return "Coarse particulate matter";
+      case "nh3":
+        return "Ammonia";
+      default:
+        return "No component";
+    }
   }
 }
