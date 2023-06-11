@@ -45,7 +45,6 @@ class WeatherRepositoryImpl extends WeatherRepository {
           ForecastDaysModel.fromJson(response.data);
       return DataSuccess(forecastDaysEntity);
     } on AppException catch (e) {
-      print('FOOOOOOOOOORRRRRRR');
       return await CheckExceptions.getError(e.message);
     }
   }
