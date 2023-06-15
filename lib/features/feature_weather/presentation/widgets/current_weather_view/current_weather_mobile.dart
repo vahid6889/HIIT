@@ -1,4 +1,5 @@
 import 'package:Hiit/core/presentation/widgets/app_background.dart';
+import 'package:Hiit/core/utils/constants.dart';
 import 'package:Hiit/features/feature_weather/domain/entities/current_city_entity.dart';
 import 'package:flutter/material.dart';
 
@@ -16,18 +17,12 @@ class CurrentWeatherMobile extends StatelessWidget {
         const SizedBox(height: 10),
         Text(
           currentCityEntity.name!,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-          ),
+          style: kCurrentWeatherNameMobileStyle,
         ),
         const SizedBox(height: 10),
         Text(
           currentCityEntity.weather!.first.description!,
-          style: const TextStyle(
-            color: Colors.grey,
-            fontSize: 10,
-          ),
+          style: kCurrentWeatherDescriptionMobileStyle,
         ),
         const SizedBox(height: 10),
         AppBackground.setIconForMain(
@@ -38,10 +33,7 @@ class CurrentWeatherMobile extends StatelessWidget {
         const SizedBox(height: 10),
         Text(
           "${currentCityEntity.main!.temp!.round()}\u00B0",
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 25,
-          ),
+          style: kCurrentWeatherTempMobileStyle,
         ),
         const SizedBox(height: 10),
         Row(
@@ -52,18 +44,12 @@ class CurrentWeatherMobile extends StatelessWidget {
               children: [
                 const Text(
                   "max",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                  ),
+                  style: kCurrentWeatherTempMaxMobileStyle,
                 ),
                 const SizedBox(height: 10),
                 Text(
                   "${currentCityEntity.main!.tempMax!.round()}\u00B0",
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                  ),
+                  style: kCurrentWeatherTempMaxMobileStyle,
                 ),
               ],
             ),
@@ -86,18 +72,12 @@ class CurrentWeatherMobile extends StatelessWidget {
               children: [
                 const Text(
                   "min",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                  ),
+                  style: kCurrentWeatherTempMinMobileStyle,
                 ),
                 const SizedBox(height: 10),
                 Text(
                   "${currentCityEntity.main!.tempMin!.round()}\u00B0",
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                  ),
+                  style: kCurrentWeatherTempMinMobileStyle,
                 ),
               ],
             ),

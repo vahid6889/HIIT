@@ -1,4 +1,5 @@
 import 'package:Hiit/core/presentation/widgets/app_background.dart';
+import 'package:Hiit/core/utils/constants.dart';
 import 'package:Hiit/features/feature_weather/domain/entities/current_city_entity.dart';
 import 'package:flutter/material.dart';
 
@@ -17,18 +18,12 @@ class CurrentWeatherDesktop extends StatelessWidget {
         const SizedBox(height: 10),
         Text(
           currentCityEntity.name!,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 30,
-          ),
+          style: kCurrentWeatherNameDesktopStyle,
         ),
         const SizedBox(height: 20),
         Text(
           currentCityEntity.weather!.first.description!,
-          style: const TextStyle(
-            color: Colors.grey,
-            fontSize: 20,
-          ),
+          style: kCurrentWeatherDescriptionDesktopStyle,
         ),
         const SizedBox(height: 20),
         AppBackground.setIconForMain(
@@ -39,10 +34,7 @@ class CurrentWeatherDesktop extends StatelessWidget {
         const SizedBox(height: 20),
         Text(
           "${currentCityEntity.main!.temp!.round()}\u00B0",
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 50,
-          ),
+          style: kCurrentWeatherTempDesktopStyle,
         ),
         const SizedBox(height: 20),
         Row(
@@ -53,18 +45,12 @@ class CurrentWeatherDesktop extends StatelessWidget {
               children: [
                 const Text(
                   "max",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
+                  style: kCurrentWeatherTempMaxDesktopStyle,
                 ),
                 const SizedBox(height: 10),
                 Text(
                   "${currentCityEntity.main!.tempMax!.round()}\u00B0",
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
+                  style: kCurrentWeatherTempMaxDesktopStyle,
                 ),
               ],
             ),
@@ -87,18 +73,12 @@ class CurrentWeatherDesktop extends StatelessWidget {
               children: [
                 const Text(
                   "min",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
+                  style: kCurrentWeatherTempMinDesktopStyle,
                 ),
                 const SizedBox(height: 10),
                 Text(
                   "${currentCityEntity.main!.tempMin!.round()}\u00B0",
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
+                  style: kCurrentWeatherTempMinDesktopStyle,
                 ),
               ],
             ),

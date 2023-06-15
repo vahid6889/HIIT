@@ -1,4 +1,5 @@
 import 'package:Hiit/core/presentation/widgets/app_background.dart';
+import 'package:Hiit/core/utils/constants.dart';
 import 'package:Hiit/core/utils/date_converter.dart';
 import 'package:Hiit/features/feature_weather/data/models/forecast_hourly_model.dart';
 import 'package:flutter/material.dart';
@@ -33,10 +34,7 @@ class HourlyGridViewMobile extends StatelessWidget {
                     Text(
                       DateConverter.changeDtToDateTimeHour(
                           mainHourly[index].dt, mainTimeZone),
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                      ),
+                      style: kHourlyTimeMobileStyle,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 1.0),
@@ -52,10 +50,7 @@ class HourlyGridViewMobile extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Text(
                           "${mainHourly[index].temp.round()}\u00B0",
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
+                          style: kHourlyTempMobileStyle,
                         ),
                       ),
                     ),

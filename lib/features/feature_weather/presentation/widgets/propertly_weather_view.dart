@@ -1,3 +1,4 @@
+import 'package:Hiit/core/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Hiit/core/presentation/widgets/app_background.dart';
@@ -36,19 +37,13 @@ class PropertlyWeatherView extends StatelessWidget {
             children: [
               Text(
                 "wind speed",
-                style: TextStyle(
-                  fontSize: (height > 600) ? height * 0.017 : height * 0.025,
-                  color: Colors.amber,
-                ),
+                style: kPropertyWeatherTitleStyle(height),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "${currentCityEntity.wind!.speed} m/s",
-                  style: TextStyle(
-                    fontSize: (height > 600) ? height * 0.016 : height * 0.023,
-                    color: Colors.white,
-                  ),
+                  style: kPropertyWeatherValueStyle(height),
                 ),
               ),
             ],
@@ -67,20 +62,13 @@ class PropertlyWeatherView extends StatelessWidget {
               children: [
                 Text(
                   "sunrise",
-                  style: TextStyle(
-                    fontSize: (height > 600) ? height * 0.017 : height * 0.025,
-                    color: Colors.amber,
-                  ),
+                  style: kPropertyWeatherTitleStyle(height),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Text(
                     sunrise,
-                    style: TextStyle(
-                      fontSize:
-                          (height > 600) ? height * 0.016 : height * 0.023,
-                      color: Colors.white,
-                    ),
+                    style: kPropertyWeatherValueStyle(height),
                   ),
                 ),
               ],
@@ -100,20 +88,13 @@ class PropertlyWeatherView extends StatelessWidget {
               children: [
                 Text(
                   "sunset",
-                  style: TextStyle(
-                    fontSize: (height > 600) ? height * 0.017 : height * 0.025,
-                    color: Colors.amber,
-                  ),
+                  style: kPropertyWeatherTitleStyle(height),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Text(
                     sunset,
-                    style: TextStyle(
-                      fontSize:
-                          (height > 600) ? height * 0.016 : height * 0.023,
-                      color: Colors.white,
-                    ),
+                    style: kPropertyWeatherValueStyle(height),
                   ),
                 ),
               ],
@@ -133,20 +114,13 @@ class PropertlyWeatherView extends StatelessWidget {
               children: [
                 Text(
                   "humidity",
-                  style: TextStyle(
-                    fontSize: (height > 600) ? height * 0.017 : height * 0.025,
-                    color: Colors.amber,
-                  ),
+                  style: kPropertyWeatherTitleStyle(height),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Text(
                     "${currentCityEntity.main!.humidity}%",
-                    style: TextStyle(
-                      fontSize:
-                          (height > 600) ? height * 0.016 : height * 0.023,
-                      color: Colors.white,
-                    ),
+                    style: kPropertyWeatherValueStyle(height),
                   ),
                 ),
               ],
@@ -182,22 +156,13 @@ class PropertlyWeatherView extends StatelessWidget {
                     children: [
                       Text(
                         "air quality",
-                        style: TextStyle(
-                          fontSize:
-                              (height > 600) ? height * 0.017 : height * 0.025,
-                          color: Colors.amber,
-                        ),
+                        style: kPropertyWeatherTitleStyle(height),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0),
                         child: Text(
                           airQuality,
-                          style: TextStyle(
-                            fontSize: (height > 600)
-                                ? height * 0.016
-                                : height * 0.023,
-                            color: Colors.white,
-                          ),
+                          style: kPropertyWeatherValueStyle(height),
                         ),
                       ),
                     ],

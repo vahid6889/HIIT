@@ -1,4 +1,5 @@
 import 'package:Hiit/core/presentation/widgets/app_background.dart';
+import 'package:Hiit/core/utils/constants.dart';
 import 'package:Hiit/core/utils/date_converter.dart';
 import 'package:Hiit/features/feature_weather/data/models/forecast_days_model.dart';
 import 'package:flutter/material.dart';
@@ -40,10 +41,7 @@ class DaysTransformMobile extends StatelessWidget {
                   DateConverter.changeDtToDateTime(
                     mainDaily[index].dt,
                   ),
-                  style: const TextStyle(
-                    fontSize: 9,
-                    color: Colors.grey,
-                  ),
+                  style: kDaysTimeMobileStyle,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 5.0),
@@ -58,10 +56,7 @@ class DaysTransformMobile extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 5.0),
                     child: Text(
                       "${mainDaily[index].temp!.day!.round()}\u00B0",
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color: Colors.white,
-                      ),
+                      style: kDaysTempMobileStyle,
                     ),
                   ),
                 ),
