@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:Hiit/core/presentation/widgets/app_background.dart';
 import 'package:Hiit/features/feature_weather/domain/entities/current_city_entity.dart';
+import 'package:flutter/material.dart';
 
-class CurrentWeatherView extends StatelessWidget {
+class CurrentWeatherMobile extends StatelessWidget {
   final CurrentCityEntity currentCityEntity;
-  const CurrentWeatherView({
+  const CurrentWeatherMobile({
     super.key,
     required this.currentCityEntity,
   });
@@ -18,30 +18,32 @@ class CurrentWeatherView extends StatelessWidget {
           currentCityEntity.name!,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 30,
+            fontSize: 15,
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         Text(
-          currentCityEntity.weather![0].description!,
+          currentCityEntity.weather!.first.description!,
           style: const TextStyle(
             color: Colors.grey,
-            fontSize: 20,
+            fontSize: 10,
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         AppBackground.setIconForMain(
-          currentCityEntity.weather![0].description!,
+          description: currentCityEntity.weather!.first.description!,
+          width: 50.0,
+          height: 50.0,
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         Text(
           "${currentCityEntity.main!.temp!.round()}\u00B0",
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 50,
+            fontSize: 25,
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -51,7 +53,7 @@ class CurrentWeatherView extends StatelessWidget {
                 const Text(
                   "max",
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 12,
                     color: Colors.grey,
                   ),
                 ),
@@ -59,7 +61,7 @@ class CurrentWeatherView extends StatelessWidget {
                 Text(
                   "${currentCityEntity.main!.tempMax!.round()}\u00B0",
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 12,
                     color: Colors.grey,
                   ),
                 ),
@@ -75,7 +77,7 @@ class CurrentWeatherView extends StatelessWidget {
               child: Container(
                 color: Colors.grey,
                 width: 2,
-                height: 40,
+                height: 35,
               ),
             ),
 
@@ -85,7 +87,7 @@ class CurrentWeatherView extends StatelessWidget {
                 const Text(
                   "min",
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 12,
                     color: Colors.grey,
                   ),
                 ),
@@ -93,7 +95,7 @@ class CurrentWeatherView extends StatelessWidget {
                 Text(
                   "${currentCityEntity.main!.tempMin!.round()}\u00B0",
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 12,
                     color: Colors.grey,
                   ),
                 ),

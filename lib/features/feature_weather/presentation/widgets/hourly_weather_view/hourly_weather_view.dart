@@ -1,9 +1,9 @@
+import 'package:Hiit/features/feature_weather/presentation/widgets/hourly_weather_view/hourly_grid_view_desktop.dart';
+import 'package:Hiit/features/feature_weather/presentation/widgets/hourly_weather_view/hourly_grid_view_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Hiit/core/params/forecast_params.dart';
-import 'package:Hiit/core/presentation/widgets/app_background.dart';
 import 'package:Hiit/core/presentation/widgets/dot_loading_widget.dart';
-import 'package:Hiit/core/utils/date_converter.dart';
 import 'package:Hiit/features/feature_weather/data/models/forecast_hourly_model.dart';
 import 'package:Hiit/features/feature_weather/domain/entities/forecast_hourly_entity.dart';
 import 'package:Hiit/features/feature_weather/presentation/bloc/fh_status.dart';
@@ -47,56 +47,20 @@ class _HourlyWeatherViewState extends State<HourlyWeatherView> {
                     fhCompleted.forecastHourlyEntity;
                 final List<Hourly> mainHourly = forecastHourlyEntity.hourly!;
                 final int mainTimeZone = forecastHourlyEntity.timezoneOffset!;
-                return GridView.count(
-                  crossAxisCount: 3,
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  mainAxisSpacing: 20,
-                  children: List.generate(
-                    mainHourly.length,
-                    (index) {
-                      return Container(
-                        height: 15,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 5),
-                          child: Card(
-                            color: Colors.transparent,
-                            elevation: 0,
-                            child: Column(
-                              children: [
-                                Text(
-                                  DateConverter.changeDtToDateTimeHour(
-                                      mainHourly[index].dt, mainTimeZone),
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 1.0),
-                                  child: AppBackground.setIconForMain(
-                                    mainHourly[index].weather![0].description,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text(
-                                      "${mainHourly[index].temp!.round()}\u00B0",
-                                      style: const TextStyle(
-                                        fontSize: 17,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                return LayoutBuilder(
+                  builder: (context, constraints) {
+                    if (constraints.maxWidth > 360) {
+                      return HourlyGridViewDesktop(
+                        mainHourly: mainHourly,
+                        mainTimeZone: mainTimeZone,
                       );
-                    },
-                  ),
+                    } else {
+                      return HourlyGridViewMobile(
+                        mainHourly: mainHourly,
+                        mainTimeZone: mainTimeZone,
+                      );
+                    }
+                  },
                 );
               }
 

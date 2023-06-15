@@ -21,187 +21,202 @@ class PropertlyWeatherView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Column(
-          children: [
-            Text(
-              "wind speed",
-              style: TextStyle(
-                fontSize: height * 0.017,
-                color: Colors.amber,
+    final width = MediaQuery.of(context).size.width;
+    return Padding(
+      padding: (width < 360 || width > 360 && width < 600 || height > 600)
+          ? const EdgeInsets.only(left: 0.0, right: 0.0)
+          : const EdgeInsets.only(left: 100.0, right: 100.0),
+      child: Row(
+        mainAxisAlignment:
+            (width < 360 || width > 360 && width < 600 || height > 600)
+                ? MainAxisAlignment.center
+                : MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            children: [
+              Text(
+                "wind speed",
+                style: TextStyle(
+                  fontSize: (height > 600) ? height * 0.017 : height * 0.025,
+                  color: Colors.amber,
+                ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Text(
+                  "${currentCityEntity.wind!.speed} m/s",
+                  style: TextStyle(
+                    fontSize: (height > 600) ? height * 0.016 : height * 0.023,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Container(
+              color: Colors.white24,
+              height: 30,
+              width: 2,
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: Text(
-                "${currentCityEntity.wind!.speed!} m/s",
-                style: TextStyle(
-                  fontSize: height * 0.016,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Container(
-            color: Colors.white24,
-            height: 30,
-            width: 2,
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10.0),
-          child: Column(
-            children: [
-              Text(
-                "sunrise",
-                style: TextStyle(
-                  fontSize: height * 0.017,
-                  color: Colors.amber,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Text(
-                  sunrise,
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Column(
+              children: [
+                Text(
+                  "sunrise",
                   style: TextStyle(
-                    fontSize: height * 0.016,
-                    color: Colors.white,
+                    fontSize: (height > 600) ? height * 0.017 : height * 0.025,
+                    color: Colors.amber,
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Container(
-            color: Colors.white24,
-            height: 30,
-            width: 2,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10.0),
-          child: Column(
-            children: [
-              Text(
-                "sunset",
-                style: TextStyle(
-                  fontSize: height * 0.017,
-                  color: Colors.amber,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Text(
-                  sunset,
-                  style: TextStyle(
-                    fontSize: height * 0.016,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Container(
-            color: Colors.white24,
-            height: 30,
-            width: 2,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10.0),
-          child: Column(
-            children: [
-              Text(
-                "humidity",
-                style: TextStyle(
-                  fontSize: height * 0.017,
-                  color: Colors.amber,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Text(
-                  "${currentCityEntity.main!.humidity!}%",
-                  style: TextStyle(
-                    fontSize: height * 0.016,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Container(
-            color: Colors.white24,
-            height: 30,
-            width: 2,
-          ),
-        ),
-        BlocBuilder<HomeBloc, HomeState>(
-          builder: (context, state) {
-            /// show Loading State for Aq
-            if (state.aqStatus is AqLoading) {
-              return const DotLoadingWidget();
-            }
-
-            /// show Completed State for Aq
-            if (state.aqStatus is AqCompleted) {
-              /// cast
-              final AqCompleted aqCompleted = state.aqStatus as AqCompleted;
-              final CurrentAirQualityCityEntity currentAirQualityCityEntity =
-                  aqCompleted.currentAirQualityCityEntity;
-              final String airQuality = AppBackground.setAirQualityForMain(
-                currentAirQualityCityEntity.list?.first.main!.aqi,
-              );
-              return Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Column(
-                  children: [
-                    Text(
-                      "air quality",
-                      style: TextStyle(
-                        fontSize: height * 0.017,
-                        color: Colors.amber,
-                      ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Text(
+                    sunrise,
+                    style: TextStyle(
+                      fontSize:
+                          (height > 600) ? height * 0.016 : height * 0.023,
+                      color: Colors.white,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Text(
-                        airQuality,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Container(
+              color: Colors.white24,
+              height: 30,
+              width: 2,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Column(
+              children: [
+                Text(
+                  "sunset",
+                  style: TextStyle(
+                    fontSize: (height > 600) ? height * 0.017 : height * 0.025,
+                    color: Colors.amber,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Text(
+                    sunset,
+                    style: TextStyle(
+                      fontSize:
+                          (height > 600) ? height * 0.016 : height * 0.023,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Container(
+              color: Colors.white24,
+              height: 30,
+              width: 2,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Column(
+              children: [
+                Text(
+                  "humidity",
+                  style: TextStyle(
+                    fontSize: (height > 600) ? height * 0.017 : height * 0.025,
+                    color: Colors.amber,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Text(
+                    "${currentCityEntity.main!.humidity}%",
+                    style: TextStyle(
+                      fontSize:
+                          (height > 600) ? height * 0.016 : height * 0.023,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Container(
+              color: Colors.white24,
+              height: 30,
+              width: 2,
+            ),
+          ),
+          BlocBuilder<HomeBloc, HomeState>(
+            builder: (context, state) {
+              /// show Loading State for Aq
+              if (state.aqStatus is AqLoading) {
+                return const DotLoadingWidget();
+              }
+
+              /// show Completed State for Aq
+              if (state.aqStatus is AqCompleted) {
+                /// cast
+                final AqCompleted aqCompleted = state.aqStatus as AqCompleted;
+                final CurrentAirQualityCityEntity currentAirQualityCityEntity =
+                    aqCompleted.currentAirQualityCityEntity;
+                final String airQuality = AppBackground.setAirQualityForMain(
+                  currentAirQualityCityEntity.list!.first.main!.aqi,
+                );
+                return Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        "air quality",
                         style: TextStyle(
-                          fontSize: height * 0.016,
-                          color: Colors.white,
+                          fontSize:
+                              (height > 600) ? height * 0.017 : height * 0.025,
+                          color: Colors.amber,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            }
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(
+                          airQuality,
+                          style: TextStyle(
+                            fontSize: (height > 600)
+                                ? height * 0.016
+                                : height * 0.023,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
 
-            /// show Error State for Aq
-            if (state.aqStatus is AqError) {
-              final AqError aqError = state.aqStatus as AqError;
-              return Center(
-                child: Text(aqError.message),
-              );
-            }
-            return Container();
-          },
-        ),
-      ],
+              /// show Error State for Aq
+              if (state.aqStatus is AqError) {
+                final AqError aqError = state.aqStatus as AqError;
+                return Center(
+                  child: Text(aqError.message),
+                );
+              }
+              return Container();
+            },
+          ),
+        ],
+      ),
     );
   }
 }

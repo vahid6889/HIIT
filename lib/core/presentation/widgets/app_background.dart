@@ -14,40 +14,56 @@ class AppBackground {
     }
   }
 
-  static Image setIconForMain(description) {
+  static Image setIconForMain({description, double? width, double? height}) {
     switch (description) {
       case "clear sky":
         return Image(
           image: const AssetImage('assets/images/icons8-sun-96.png'),
+          width: width,
+          height: height,
         );
       case "few clouds":
         return Image(
           image:
               const AssetImage('assets/images/icons8-partly-cloudy-day-80.png'),
+          width: width,
+          height: height,
         );
       case "clouds":
         return Image(
           image: const AssetImage('assets/images/icons8-clouds-80.png'),
+          width: width,
+          height: height,
         );
       case "thunderstorm":
         return Image(
           image: const AssetImage('assets/images/icons8-storm-80.png'),
+          width: width,
+          height: height,
         );
       case "drizzle":
         return Image(
           image: const AssetImage('assets/images/icons8-rain-cloud-80.png'),
+          width: width,
+          height: height,
         );
       case "rain":
         return Image(
           image: const AssetImage('assets/images/icons8-heavy-rain-80.png'),
+          width: width,
+          height: height,
         );
       case "snow":
         return Image(
           image: const AssetImage('assets/images/icons8-snow-80.png'),
+          width: width,
+          height: height,
         );
       default:
         return Image(
           image: const AssetImage('assets/images/icons8-windy-weather-80.png'),
+          width: width,
+          height: height,
         );
     }
   }

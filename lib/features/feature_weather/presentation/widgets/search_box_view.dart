@@ -49,7 +49,7 @@ class SearchBoxView extends StatelessWidget {
           return ListTile(
             leading: const Icon(Icons.location_on),
             title: Text(model.name!),
-            subtitle: Text("${model.region!}, ${model.country!}"),
+            subtitle: Text("${model.region ?? ''}, ${model.country ?? ''}"),
           );
         },
         onSuggestionSelected: (Data model) {

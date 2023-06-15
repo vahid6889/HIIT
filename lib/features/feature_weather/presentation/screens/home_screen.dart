@@ -9,9 +9,9 @@ import 'package:Hiit/features/feature_weather/presentation/bloc/cw_status.dart';
 import 'package:Hiit/features/feature_weather/presentation/bloc/home_bloc.dart';
 import 'package:Hiit/features/feature_weather/presentation/widgets/air_quality_view.dart';
 import 'package:Hiit/features/feature_weather/presentation/widgets/bookmark_icon.dart';
-import 'package:Hiit/features/feature_weather/presentation/widgets/current_weather_view.dart';
-import 'package:Hiit/features/feature_weather/presentation/widgets/days_weather_view.dart';
-import 'package:Hiit/features/feature_weather/presentation/widgets/hourly_weather_view.dart';
+import 'package:Hiit/features/feature_weather/presentation/widgets/current_weather_view/current_weather_view.dart';
+import 'package:Hiit/features/feature_weather/presentation/widgets/days_weather_view/days_weather_view.dart';
+import 'package:Hiit/features/feature_weather/presentation/widgets/hourly_weather_view/hourly_weather_view.dart';
 import 'package:Hiit/features/feature_weather/presentation/widgets/location_icon.dart';
 import 'package:Hiit/features/feature_weather/presentation/widgets/propertly_weather_view.dart';
 import 'package:Hiit/features/feature_weather/presentation/widgets/search_box_view.dart';
@@ -197,30 +197,64 @@ class _HomeScreenState extends State<HomeScreen>
                     child: ListView(
                       children: [
                         /// page view touch drift
-                        Padding(
-                          padding: EdgeInsets.only(top: height * 0.01),
-                          child: SizedBox(
-                            width: width,
-                            height: 370,
-                            child: PageView.builder(
-                              physics: const AlwaysScrollableScrollPhysics(),
-                              allowImplicitScrolling: true,
-                              controller: _pageController,
-                              itemCount: 2,
-                              itemBuilder: (context, position) {
-                                if (position == 0) {
-                                  return CurrentWeatherView(
-                                    currentCityEntity: currentCityEntity,
-                                  );
-                                } else {
-                                  /// forecast weather 48 hourly
-                                  return HourlyWeatherView(
-                                    forecastParams: forecastParams,
-                                  );
-                                }
-                              },
-                            ),
-                          ),
+                        LayoutBuilder(
+                          builder: (context, constraints) {
+                            if (constraints.minWidth > 360) {
+                              return Padding(
+                                padding: EdgeInsets.only(top: height * 0.01),
+                                child: SizedBox(
+                                  width: width,
+                                  height: 370,
+                                  child: PageView.builder(
+                                    physics:
+                                        const AlwaysScrollableScrollPhysics(),
+                                    allowImplicitScrolling: true,
+                                    controller: _pageController,
+                                    itemCount: 2,
+                                    itemBuilder: (context, position) {
+                                      if (position == 0) {
+                                        return CurrentWeatherView(
+                                          currentCityEntity: currentCityEntity,
+                                        );
+                                      } else {
+                                        /// forecast weather 48 hourly
+                                        return HourlyWeatherView(
+                                          forecastParams: forecastParams,
+                                        );
+                                      }
+                                    },
+                                  ),
+                                ),
+                              );
+                            } else {
+                              return Padding(
+                                padding: EdgeInsets.only(top: height * 0.01),
+                                child: SizedBox(
+                                  width: width,
+                                  height: 210,
+                                  child: PageView.builder(
+                                    physics:
+                                        const AlwaysScrollableScrollPhysics(),
+                                    allowImplicitScrolling: true,
+                                    controller: _pageController,
+                                    itemCount: 2,
+                                    itemBuilder: (context, position) {
+                                      if (position == 0) {
+                                        return CurrentWeatherView(
+                                          currentCityEntity: currentCityEntity,
+                                        );
+                                      } else {
+                                        /// forecast weather 48 hourly
+                                        return HourlyWeatherView(
+                                          forecastParams: forecastParams,
+                                        );
+                                      }
+                                    },
+                                  ),
+                                ),
+                              );
+                            }
+                          },
                         ),
 
                         Center(
@@ -265,7 +299,9 @@ class _HomeScreenState extends State<HomeScreen>
                           ),
                         ),
 
-                        const SizedBox(height: 10),
+                        (width > 360)
+                            ? const SizedBox(height: 10)
+                            : const SizedBox(height: 5),
 
                         /// propertly weather
                         PropertlyWeatherView(
@@ -276,7 +312,9 @@ class _HomeScreenState extends State<HomeScreen>
 
                         /// divider
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: (width > 360)
+                              ? const EdgeInsets.only(top: 10)
+                              : const EdgeInsets.only(top: 5),
                           child: Container(
                             color: Colors.white24,
                             height: 2,
@@ -284,12 +322,14 @@ class _HomeScreenState extends State<HomeScreen>
                           ),
                         ),
 
-                        const SizedBox(height: 10),
+                        (width > 360)
+                            ? const SizedBox(height: 10)
+                            : const SizedBox(height: 5),
 
                         /// air quality
                         const AirQualityView(),
 
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 20),
                       ],
                     ),
                   );

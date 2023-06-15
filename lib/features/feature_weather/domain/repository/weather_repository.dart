@@ -14,7 +14,7 @@ abstract class WeatherRepository {
       ForecastParams params);
   Future<DataState<ForecastHourlyEntity>> fetchForecastHourlyData(
       ForecastParams params);
-  Future<List<Data>> fetchSuggestData(cityName);
+  Future<List<Data>> fetchSuggestData(String cityName);
   Future<DataState<CurrentAirQualityCityEntity>> fetchCurrentAirQualityCity(
       ForecastParams params);
 }

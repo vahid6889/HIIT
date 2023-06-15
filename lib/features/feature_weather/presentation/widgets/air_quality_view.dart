@@ -50,33 +50,46 @@ class AirQualityView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    double childAspectRatio;
+    double fontSize;
 
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (BuildContext context, state) {
-        /// show Loading State for Aq
-        if (state.aqStatus is AqLoading) {
-          return const DotLoadingWidget();
-        }
+    return Padding(
+      padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+      child: BlocBuilder<HomeBloc, HomeState>(
+        builder: (BuildContext context, state) {
+          /// show Loading State for Aq
+          if (state.aqStatus is AqLoading) {
+            return const DotLoadingWidget();
+          }
 
-        /// show Completed State for Aq
-        if (state.aqStatus is AqCompleted) {
-          /// cast
-          final AqCompleted aqCompleted = state.aqStatus as AqCompleted;
-          final CurrentAirQualityCityEntity currentAirQualityCityEntity =
-              aqCompleted.currentAirQualityCityEntity;
+          /// show Completed State for Aq
+          if (state.aqStatus is AqCompleted) {
+            /// cast
+            final AqCompleted aqCompleted = state.aqStatus as AqCompleted;
+            final CurrentAirQualityCityEntity currentAirQualityCityEntity =
+                aqCompleted.currentAirQualityCityEntity;
 
-          return Expanded(
-            child: GridView.count(
+            if (width < 360) {
+              childAspectRatio = 1 / .2;
+              fontSize = height * 0.017;
+            } else if (width < 600) {
+              fontSize = height * 0.017;
+              childAspectRatio = 1 / .3;
+            } else {
+              fontSize = height * 0.014;
+              childAspectRatio = 1 / .1;
+            }
+
+            return GridView.count(
               crossAxisCount: 2,
               shrinkWrap: true,
-              childAspectRatio: (1 / .3),
-              physics: const BouncingScrollPhysics(),
+              childAspectRatio: childAspectRatio,
               children: List.generate(
                 componentsAirQualityList(currentAirQualityCityEntity).length,
                 (index) {
                   return Card(
-                    // color: Colors.transparent,
-                    color: Colors.blueGrey,
+                    color: Colors.blueGrey.shade900,
                     elevation: 0,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -90,7 +103,7 @@ class AirQualityView extends StatelessWidget {
                                     currentAirQualityCityEntity)[index][0],
                               ),
                               style: TextStyle(
-                                fontSize: height * 0.017,
+                                fontSize: fontSize,
                                 color: Colors.amber,
                               ),
                             ),
@@ -98,7 +111,7 @@ class AirQualityView extends StatelessWidget {
                               componentsAirQualityList(
                                   currentAirQualityCityEntity)[index][1],
                               style: TextStyle(
-                                fontSize: height * 0.016,
+                                fontSize: fontSize,
                                 color: Colors.white,
                               ),
                             ),
@@ -109,21 +122,21 @@ class AirQualityView extends StatelessWidget {
                   );
                 },
               ),
-            ),
-          );
-        }
+            );
+          }
 
-        /// show Error State for Aq
-        if (state.aqStatus is AqError) {
-          final AqError aqError = state.aqStatus as AqError;
-          return Center(
-            child: Text(aqError.message),
-          );
-        }
+          /// show Error State for Aq
+          if (state.aqStatus is AqError) {
+            final AqError aqError = state.aqStatus as AqError;
+            return Center(
+              child: Text(aqError.message),
+            );
+          }
 
-        /// show Default State for Fw
-        return Container();
-      },
+          /// show Default State for Fw
+          return Container();
+        },
+      ),
     );
   }
 }

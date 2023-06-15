@@ -9,6 +9,7 @@ import 'package:Hiit/features/feature_weather/presentation/bloc/lw_status.dart';
 import 'package:Hiit/locator.dart';
 import 'package:location/location.dart';
 
+// ignore: must_be_immutable
 class LocationIcon extends StatelessWidget {
   final String cityName;
 

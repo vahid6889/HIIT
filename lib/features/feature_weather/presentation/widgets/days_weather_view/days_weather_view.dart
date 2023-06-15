@@ -1,7 +1,7 @@
+import 'package:Hiit/features/feature_weather/presentation/widgets/days_weather_view/days_transform_desktop.dart';
+import 'package:Hiit/features/feature_weather/presentation/widgets/days_weather_view/days_transform_modile.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Hiit/core/presentation/widgets/app_background.dart';
 import 'package:Hiit/core/presentation/widgets/dot_loading_widget.dart';
-import 'package:Hiit/core/utils/date_converter.dart';
 import 'package:Hiit/features/feature_weather/data/models/forecast_days_model.dart';
 import 'package:flutter/material.dart';
 import 'package:Hiit/features/feature_weather/domain/entities/forecast_days_entity.dart';
@@ -45,10 +45,12 @@ class _DaysWeatherViewState extends State<DaysWeatherView>
     final double width = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: const EdgeInsets.only(top: 15),
+      padding: (width > 360)
+          ? const EdgeInsets.only(top: 15)
+          : const EdgeInsets.only(top: 10),
       child: SizedBox(
         width: double.infinity,
-        height: 100,
+        height: (width > 360) ? 100 : 70,
         child: Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Center(
@@ -78,52 +80,22 @@ class _DaysWeatherViewState extends State<DaysWeatherView>
                       return AnimatedBuilder(
                         animation: animationController,
                         builder: (context, child) {
-                          return Transform(
-                            transform: Matrix4.translationValues(
-                                animation.value * width, 0.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 5),
-                              child: Card(
-                                color: Colors.transparent,
-                                elevation: 0,
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        DateConverter.changeDtToDateTime(
-                                            mainDaily[index].dt),
-                                        style: const TextStyle(
-                                            fontSize: 12, color: Colors.grey),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 5.0),
-                                        child: AppBackground.setIconForMain(
-                                          mainDaily[index]
-                                              .weather![0]
-                                              .description,
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 5.0),
-                                          child: Text(
-                                            "${mainDaily[index].temp!.day!.round()}\u00B0",
-                                            style: const TextStyle(
-                                              fontSize: 15,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
+                          return LayoutBuilder(
+                            builder: (context, constraints) {
+                              if (constraints.maxWidth > 360) {
+                                return DaysTransformDesktop(
+                                  animation: animation,
+                                  index: index,
+                                  mainDaily: mainDaily,
+                                );
+                              } else {
+                                return DaysTransformMobile(
+                                  animation: animation,
+                                  index: index,
+                                  mainDaily: mainDaily,
+                                );
+                              }
+                            },
                           );
                         },
                       );
