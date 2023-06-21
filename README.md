@@ -7,6 +7,7 @@ How is it weather ?
   <img src="assets/Screenshot_2023-06-19-11-18-09-907_com.example.hiit2.jpg" width="200" height="400" />
   <img src="assets/Screenshot_2023-06-19-11-18-48-108_com.example.hiit3.jpg" width="200" height="400" />
 </p>
+<hr>
 
 Features of the weather forecasting Flutter project:
 - Clean Architecture
