@@ -2,7 +2,8 @@
 
 How is it weather ?
 
-![plot](./assets/Screenshot_2023-06-19-11-17-49-992_com.example.hiit1.jpg)
+
+<img src="assets/Screenshot_2023-06-19-11-17-49-992_com.example.hiit1.jpg" width="300"/>
 
 ## Getting Started
 
