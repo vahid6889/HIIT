@@ -2,6 +2,8 @@
 
 How is it weather ?
 
+![plot](./assets/images/icons8-clouds-80.png)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
