@@ -2,7 +2,7 @@
 
 How is it weather ?
 
-![plot](./assets/images/icons8-clouds-80.png)
+![plot](./assets/images/Screenshot_2023-06-19-11-17-49-992_com.example.hiit1.jpg)
 
 ## Getting Started
 
