@@ -1,6 +1,6 @@
-# HIIT
+# HIIT ![plot](./android/app/src/main/res/mipmap-hdpi/ic_launcher.png)
 
-How is it weather ? ![plot](./android/app/src/main/res/mipmap-hdpi/ic_launcher.png)
+How is it weather ?
 
 <p align="center">
   <img src="assets/Screenshot_2023-06-19-11-17-49-992_com.example.hiit1.jpg" width="200" height="400" />
