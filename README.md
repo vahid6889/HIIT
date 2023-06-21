@@ -1,5 +1,5 @@
-# HIIT
-![plot](./android/app/src/main/res/mipmap-hdpi/ic_launcher.png)
+# HIIT <img src="android/app/src/main/res/mipmap-hdpi/ic_launcher.png" align="right"/>
+
 How is it weather ?
 
 <p align="center">
