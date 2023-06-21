@@ -4,6 +4,8 @@ How is it weather ?
 
 
 <img src="assets/Screenshot_2023-06-19-11-17-49-992_com.example.hiit1.jpg" width="300"/>
+<img src="assets/Screenshot_2023-06-19-11-17-49-992_com.example.hiit2.jpg" width="300"/>
+<img src="assets/Screenshot_2023-06-19-11-17-49-992_com.example.hiit3.jpg" width="300"/>
 
 ## Getting Started
 
