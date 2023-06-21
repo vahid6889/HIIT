@@ -1,4 +1,4 @@
-# HIIT <img src="android/app/src/main/res/mipmap-hdpi/ic_launcher.png" align="right"/><hr><br>
+# HIIT <img src="android/app/src/main/res/mipmap-hdpi/ic_launcher.png" align="right"/><br><br>
 
 How is it weather ?
 <hr>
@@ -7,7 +7,7 @@ How is it weather ?
   <img src="assets/Screenshot_2023-06-19-11-18-09-907_com.example.hiit2.jpg" width="200" height="400" />
   <img src="assets/Screenshot_2023-06-19-11-18-48-108_com.example.hiit3.jpg" width="200" height="400" />
 </p>
-<hr><br>
+
 Features of the weather forecasting Flutter project:
 - Clean Architecture
 - Bloc statement
