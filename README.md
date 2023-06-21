@@ -16,7 +16,7 @@ Features of the weather forecasting Flutter project:
 - Responsive view screens
 - Testable
 - Provided details bloc with Getit
-
+<hr>
 ## Getting Started
 
 This project is a starting point for a Flutter application.
