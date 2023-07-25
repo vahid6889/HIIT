@@ -17,6 +17,22 @@ Features of the weather forecasting Flutter project:
 - Testable
 - Provided details bloc with Getit
 <hr>
+
+The packages used in the project:
+- Flutter bloc
+- Bloc
+- Shared preferences
+- Floor
+- Dio
+- Intl
+- Get-it
+- Smooth page indicator
+- Mockito
+- Bloc_test
+- Location
+- Flutter typeahead
+- Loading animation widget
+<hr>
 ## Getting Started
 
 This project is a starting point for a Flutter application.
