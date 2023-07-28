@@ -17,6 +17,7 @@ Features of the weather forecasting Flutter project:
 - Testable
 - Provided details bloc with Getit
 - TDD
+- Lint
 <hr>
 
 The packages used in the project:
